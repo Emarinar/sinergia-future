@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Tema futurista */
+:root{
+  --bg0:#050505;
+  --bg1:#0b0f0e;
+  --card: rgba(255,255,255,.06);
+  --stroke: rgba(255,255,255,.10);
+  --text: rgba(244,246,247,.92);
+  --muted: rgba(244,246,247,.70);
+
+  --brand: #2E8979;
+  --brand2:#61A787;
+}
+
+html, body { overflow-x: hidden; }
+
+body{
+  background:
+    radial-gradient(900px 600px at 20% 10%, rgba(46,137,121,.22), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(124,58,237,.16), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  color: var(--text);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Grid futurista sutil */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: .06;
+  mask-image: radial-gradient(circle at 40% 10%, rgba(0,0,0,1) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,0) 75%);
+}
+
+/* Noise súper suave para look premium */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
