@@ -1,91 +1,76 @@
-import logo from "../assets/logo.png";
+import Reveal from "./UI/Reveal";
+import { ShieldCheck, FileSearch, BadgeCheck, Users } from "lucide-react";
 
-export default function About() {
+const items = [
+  {
+    title: "Cumplimiento real",
+    desc: "Alineación a normatividad vigente con evidencias listas para inspección y auditoría.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Evidencias claras",
+    desc: "Documentos, formatos y trazabilidad: lo que realmente piden cuando revisan tu SG-SST.",
+    icon: FileSearch,
+  },
+  {
+    title: "Acompañamiento experto",
+    desc: "Te guiamos paso a paso para implementar, mejorar y sostener el sistema en el tiempo.",
+    icon: Users,
+  },
+  {
+    title: "Enfoque empresarial",
+    desc: "No solo cumplimiento: orden, control y mejora continua para proteger y crecer.",
+    icon: BadgeCheck,
+  },
+];
+
+export default function Trust() {
   return (
-    <section id="nosotros" className="py-28 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Texto */}
-        <div>
-          <h2 className="text-4xl font-extrabold text-white">
-            Somos <span className="text-emerald-300">Sinergia</span>
-          </h2>
+    <section className="py-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <Reveal>
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700 shadow-sm">
+              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              Confianza y respaldo
+            </span>
 
-          <p className="mt-6 text-white/70 text-lg leading-relaxed">
-            Acompañamos a empresas en Colombia a implementar, mantener y mejorar
-            su SG-SST, Seguridad Social y PESV con un enfoque práctico:
-            evidencias claras, cumplimiento real y mejora continua.
-          </p>
+            <h2 className="mt-6 text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Una consultoría que combina{" "}
+              <span className="text-emerald-600">técnica, estrategia</span> y{" "}
+              <span className="text-emerald-600">orden</span>
+            </h2>
 
-          <p className="mt-4 text-white/70 leading-relaxed">
-            Nuestro diferencial es la combinación de{" "}
-            <span className="text-white font-semibold">metodología</span>,{" "}
-            <span className="text-white font-semibold">tecnología</span> y{" "}
-            <span className="text-white font-semibold">acompañamiento</span>{" "}
-            para que tu empresa esté protegida y preparada ante auditorías.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#contacto"
-              className="bg-gradient-to-r from-emerald-300 to-emerald-500 text-black shadow-emerald-500/40 text-black px-6 py-3 rounded-xl font-bold
-                         shadow-lg shadow-emerald-500/25 hover:scale-[1.03] transition"
-            >
-              Hablemos por WhatsApp
-            </a>
-
-            <a
-              href="#servicios"
-              className="border border-white/15 text-white px-6 py-3 rounded-xl hover:bg-white/5 transition"
-            >
-              Ver servicios
-            </a>
+            <p className="mt-4 text-slate-600 text-lg">
+              Diseñamos sistemas que funcionan en la práctica y se sostienen con
+              evidencias, cultura y seguimiento.
+            </p>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Card visual */}
-        <div className="relative">
-          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-400/35 to-violet-500/20 blur-2xl opacity-30" />
-          <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 md:p-10 shadow-2xl">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-2xl border border-white/10 bg-black/30 flex items-center justify-center">
-                <span className="text-emerald-300 text-xl">✦</span>
-              </div>
-              <div>
-                <p className="text-white font-bold">Cumplimiento + Futuro</p>
-                <p className="text-white/60 text-sm">
-                  Consultoría moderna para empresas reales
-                </p>
-              </div>
-            </div>
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {items.map((x, i) => (
+            <Reveal key={x.title} delay={i * 0.05} y={14}>
+              <div className="group relative rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl p-7 shadow-sm hover:shadow-xl transition-all duration-300">
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-400/0 to-violet-500/0 group-hover:from-emerald-400/14 group-hover:to-violet-500/10 transition" />
 
-            <div className="mt-8 rounded-3xl border border-white/10 bg-black/30 p-6">
-              <img
-                src={logo}
-                alt="Sinergia Consultoría SGI"
-                className="w-52 max-w-full h-auto object-contain mx-auto opacity-95"
-              />
-              <p className="mt-4 text-center text-white/70">
-                Tu empresa, más segura. Tus procesos, más organizados. Tu
-                cumplimiento, a otro nivel.
-              </p>
-            </div>
+                <div className="relative z-10 flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+                    <x.icon className="h-6 w-6 text-emerald-600" />
+                  </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-3">
-              {[
-                { k: "Ruta", v: "Paso a paso" },
-                { k: "Evidencia", v: "Soportes" },
-                { k: "Control", v: "Seguimiento" },
-              ].map((x) => (
-                <div
-                  key={x.k}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center"
-                >
-                  <p className="text-white font-bold">{x.k}</p>
-                  <p className="text-white/60 text-xs">{x.v}</p>
+                  <div>
+                    <h3 className="text-slate-900 font-bold text-lg">
+                      {x.title}
+                    </h3>
+                    <p className="mt-2 text-slate-600 leading-relaxed">
+                      {x.desc}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

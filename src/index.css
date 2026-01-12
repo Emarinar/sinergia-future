@@ -1,25 +1,21 @@
 @import "tailwindcss";
 
+
+
 /* Tema futurista */
 :root{
-  --bg0:#050505;
-  --bg1:#0b0f0e;
-  --card: rgba(255,255,255,.06);
-  --stroke: rgba(255,255,255,.10);
-  --text: rgba(244,246,247,.92);
-  --muted: rgba(244,246,247,.70);
-
-  --brand: #2E8979;
-  --brand2:#61A787;
+  --bg: #f6f7fb;
+  --bg2: #eef2ff;
+  --text: #0b1220;
 }
 
 html, body { overflow-x: hidden; }
 
 body{
   background:
-    radial-gradient(900px 600px at 20% 10%, rgba(46,137,121,.22), transparent 60%),
-    radial-gradient(900px 600px at 85% 20%, rgba(124,58,237,.16), transparent 60%),
-    linear-gradient(180deg, var(--bg0), var(--bg1));
+    radial-gradient(1200px 700px at 15% 10%, rgba(16,185,129,.22), transparent 60%),
+    radial-gradient(1000px 700px at 85% 15%, rgba(139,92,246,.18), transparent 60%),
+    linear-gradient(to bottom, var(--bg), var(--bg2));
   color: var(--text);
 }
 
@@ -28,6 +24,7 @@ html {
 }
 
 /* Grid futurista sutil */
+/* Grid futurista CLARO (muy sutil) */
 body::before{
   content:"";
   position: fixed;
@@ -36,20 +33,54 @@ body::before{
   z-index: 0;
 
   background-image:
-    linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15,23,42,.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15,23,42,.08) 1px, transparent 1px);
   background-size: 64px 64px;
-  opacity: .06;
-  mask-image: radial-gradient(circle at 40% 10%, rgba(0,0,0,1) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,0) 75%);
+  opacity: .12;
+  mask-image: radial-gradient(circle at 40% 10%, rgba(0,0,0,1) 0%, rgba(0,0,0,.75) 42%, rgba(0,0,0,0) 78%);
 }
 
-/* Noise súper suave para look premium */
+/* Noise SUPER discreto */
 body::after{
   content:"";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: .05;
+  opacity: .03;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+/* ===== FieldSlider (marquee sin librerías) ===== */
+.field-slider-wrap { position: relative; }
+
+.field-slider-track{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  padding: 18px 0;
+  will-change: transform;
+  animation: fieldMarquee 36s linear infinite;
+}
+
+.field-slider-wrap:hover .field-slider-track{
+  animation-play-state: paused;
+}
+
+.field-slider-track.is-reverse{
+  animation-name: fieldMarqueeReverse;
+}
+
+@keyframes fieldMarquee{
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); } /* porque duplicamos 3 veces */
+}
+
+@keyframes fieldMarqueeReverse{
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
+}
+
+@media (max-width: 640px){
+  .field-slider-track{ animation-duration: 48s; }
 }

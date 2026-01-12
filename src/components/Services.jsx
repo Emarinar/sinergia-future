@@ -1,86 +1,137 @@
+import { ShieldCheck, ClipboardList, Truck, CheckCircle } from "lucide-react";
 import Reveal from "./UI/Reveal";
-import {
-  ShieldCheck,
-  FileText,
-  Car,
-  GraduationCap,
-  BadgeCheck,
-  TrendingUp,
-} from "lucide-react";
 
-const IconBox = ({ children }) => (
-  <div className="h-11 w-11 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center text-emerald-300">
-    {children}
-  </div>
-);
+const services = [
+  {
+    title: "SG-SST",
+    subtitle: "Implementación y mejora",
+    icon: ShieldCheck,
+    description:
+      "Diseñamos, implementamos y fortalecemos tu Sistema de Gestión de Seguridad y Salud en el Trabajo, alineado a la normatividad vigente y enfocado en evidencias reales.",
+    items: [
+      "Evaluación inicial",
+      "Matriz legal y riesgos",
+      "Programas y formatos",
+      "Auditorías y seguimiento",
+    ],
+  },
+  {
+    title: "Seguridad Social",
+    subtitle: "Control y trazabilidad",
+    icon: ClipboardList,
+    description:
+      "Aseguramos la correcta afiliación, control y seguimiento de la Seguridad Social, reduciendo riesgos legales y reprocesos administrativos.",
+    items: [
+      "Afiliaciones y novedades",
+      "Verificación de pagos",
+      "Control documental",
+      "Soporte ante requerimientos",
+    ],
+  },
+  {
+    title: "PESV",
+    subtitle: "Plan Estratégico Vial",
+    icon: Truck,
+    description:
+      "Implementamos y damos seguimiento al Plan Estratégico de Seguridad Vial, con enfoque preventivo, operativo y normativo.",
+    items: [
+      "Diagnóstico inicial",
+      "Plan y políticas",
+      "Capacitación",
+      "Evidencias y reportes",
+    ],
+  },
+];
 
 export default function Services() {
-  const services = [
-    {
-      title: "SG-SST Integral",
-      desc: "Implementación, auditoría y acompañamiento legal del SG-SST.",
-      icon: <ShieldCheck size={22} />,
-    },
-    {
-      title: "Seguridad Social",
-      desc: "Afiliación, novedades, control documental y verificación.",
-      icon: <FileText size={22} />,
-    },
-    {
-      title: "PESV",
-      desc: "Plan Estratégico de Seguridad Vial con seguimiento real.",
-      icon: <Car size={22} />,
-    },
-    {
-      title: "Capacitaciones",
-      desc: "Formación práctica, certificada y orientada a resultados.",
-      icon: <GraduationCap size={22} />,
-    },
-    {
-      title: "Auditorías",
-      desc: "Revisión técnica y legal de cumplimiento y evidencias.",
-      icon: <BadgeCheck size={22} />,
-    },
-    {
-      title: "Consultoría Empresarial",
-      desc: "Estrategia para crecer con orden, control y cumplimiento.",
-      icon: <TrendingUp size={22} />,
-    },
-  ];
-
   return (
-    <section id="servicios" className="py-28 px-6">
+    <section
+      id="servicios"
+      className="relative py-24 px-6"
+    >
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <Reveal>
-          <h2 className="text-4xl font-extrabold text-white text-center">
-            Servicios que elevan tu empresa
-          </h2>
+          <div className="max-w-3xl mb-16">
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700 shadow-sm">
+              <CheckCircle className="h-4 w-4 text-emerald-500" />
+              Servicios profesionales
+            </span>
+
+            <h2 className="mt-6 text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Soluciones claras para{" "}
+              <span className="text-emerald-600">empresas que quieren crecer</span>
+            </h2>
+
+            <p className="mt-4 text-slate-600 text-lg">
+              No solo cumplimos la norma. Construimos sistemas sólidos,
+              auditables y sostenibles en el tiempo.
+            </p>
+          </div>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <p className="text-white/60 text-center max-w-2xl mx-auto mt-4">
-            Soluciones diseñadas para cumplir, proteger y crecer con respaldo real.
-          </p>
-        </Reveal>
+        {/* Grid */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {services.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.05}>
+              <div
+                className="group relative rounded-3xl border border-slate-200 bg-white/80
+                           backdrop-blur-xl p-8 shadow-sm hover:shadow-xl
+                           transition-all duration-300"
+              >
+                {/* Glow hover */}
+                <div className="pointer-events-none absolute inset-0 rounded-3xl
+                                bg-gradient-to-br from-emerald-400/0 to-violet-500/0
+                                group-hover:from-emerald-400/15 group-hover:to-violet-500/10
+                                transition" />
 
-        <div className="mt-14 grid md:grid-cols-3 gap-8">
-          {services.map((s, idx) => (
-            <Reveal key={s.title} delay={0.06 * idx} y={18}>
-              <div className="relative group">
-                <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-400/40 to-violet-500/20 blur-xl opacity-0 group-hover:opacity-25 transition duration-300" />
-
-                <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-2xl
-                                hover:-translate-y-1 hover:border-white/20 transition duration-300">
-                  <div className="flex items-center gap-4">
-                    <IconBox>{s.icon}</IconBox>
-                    <h3 className="text-xl font-bold text-white">{s.title}</h3>
+                {/* Icon */}
+                <div className="relative z-10 flex items-center gap-4">
+                  <div
+                    className="h-12 w-12 rounded-2xl bg-emerald-50 border border-emerald-200
+                               flex items-center justify-center"
+                  >
+                    <s.icon className="h-6 w-6 text-emerald-600" />
                   </div>
 
-                  <p className="mt-4 text-white/70 leading-relaxed">{s.desc}</p>
-
-                  <div className="mt-6 inline-flex items-center gap-2 text-emerald-300 font-semibold">
-                    Ver detalle <span className="group-hover:translate-x-1 transition">→</span>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900">
+                      {s.title}
+                    </h3>
+                    <p className="text-sm text-slate-500">
+                      {s.subtitle}
+                    </p>
                   </div>
+                </div>
+
+                {/* Description */}
+                <p className="relative z-10 mt-6 text-slate-600 leading-relaxed">
+                  {s.description}
+                </p>
+
+                {/* List */}
+                <ul className="relative z-10 mt-6 space-y-2">
+                  {s.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-2 text-slate-600"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <div className="relative z-10 mt-8">
+                  <a
+                    href="#contacto"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl
+                               border border-slate-300 text-slate-700
+                               hover:bg-slate-100 transition font-medium"
+                  >
+                    Solicitar información
+                  </a>
                 </div>
               </div>
             </Reveal>

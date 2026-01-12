@@ -1,150 +1,119 @@
-import { useEffect, useMemo, useState } from "react";
 import Reveal from "./UI/Reveal";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { Star, Quote } from "lucide-react";
 
-const stars = Array.from({ length: 5 });
+const testimonials = [
+  {
+    name: "Gerencia",
+    role: "Empresa del sector construcción",
+    text:
+      "Con Sinergia logramos organizar el SG-SST y tener evidencias claras. La asesoría fue directa, práctica y con acompañamiento real.",
+    rating: 5,
+  },
+  {
+    name: "Talento Humano",
+    role: "Pyme de alimentos",
+    text:
+      "Nos guiaron paso a paso con Seguridad Social y documentación. Ahora todo queda controlado, sin reprocesos y con trazabilidad.",
+    rating: 5,
+  },
+  {
+    name: "Administración",
+    role: "Empresa de servicios",
+    text:
+      "El enfoque es moderno y muy profesional. Se nota la experiencia y la forma en que estructuran la información para auditorías.",
+    rating: 5,
+  },
+];
 
 export default function Testimonials() {
-  const items = useMemo(
-    () => [
-      {
-        name: "Gerencia – Empresa del sector construcción",
-        text:
-          "Con Sinergia logramos organizar el SG-SST y tener evidencias claras. La asesoría fue directa, práctica y con acompañamiento real.",
-      },
-      {
-        name: "Talento Humano – Pyme de alimentos",
-        text:
-          "Nos guiaron paso a paso con Seguridad Social y documentación. Ahora todo queda controlado, sin reprocesos y con trazabilidad.",
-      },
-      {
-        name: "Administración – Empresa de servicios",
-        text:
-          "El enfoque es moderno y muy profesional. Se nota la experiencia y la forma en que estructuran la información para auditorías.",
-      },
-    ],
-    []
-  );
-
-  const [index, setIndex] = useState(0);
-
-  const next = () => setIndex((i) => (i + 1) % items.length);
-  const prev = () => setIndex((i) => (i - 1 + items.length) % items.length);
-
-  // autoplay suave
-  useEffect(() => {
-    const t = setInterval(() => next(), 6500);
-    return () => clearInterval(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const item = items[index];
-
   return (
-    <section className="py-28 px-6">
+    <section className="relative py-24 px-6">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <Reveal>
-          <h2 className="text-4xl font-extrabold text-white text-center">
-            Lo que dicen nuestros clientes
-          </h2>
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700 shadow-sm">
+              <Quote className="h-4 w-4 text-emerald-600" />
+              Testimonios
+            </span>
+
+            <h2 className="mt-6 text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Lo que dicen nuestros{" "}
+              <span className="text-emerald-600">clientes</span>
+            </h2>
+
+            <p className="mt-4 text-slate-600 text-lg">
+              Resultados reales, evidencias claras y acompañamiento que se siente.
+            </p>
+          </div>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <p className="text-white/60 text-center max-w-2xl mx-auto mt-4">
-            Resultados reales, evidencias claras y acompañamiento que se siente.
-          </p>
-        </Reveal>
+        {/* Cards */}
+        <div className="mt-14 grid md:grid-cols-3 gap-8">
+          {testimonials.map((t, i) => (
+            <Reveal key={t.name} delay={i * 0.05} y={16}>
+              <article className="group relative rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
+                {/* Glow hover sutil */}
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-400/0 to-violet-500/0 group-hover:from-emerald-400/15 group-hover:to-violet-500/10 transition" />
 
-        <div className="mt-14 grid lg:grid-cols-[1fr_420px] gap-10 items-center">
-          {/* Card grande (carrusel) */}
-          <div className="relative">
-            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-400/30 to-violet-500/20 blur-2xl opacity-35" />
-
-            <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 md:p-10 shadow-2xl overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -14 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                >
-                  <div className="flex items-center gap-1 text-emerald-300">
-                    {stars.map((_, i) => (
-                      <Star key={i} size={16} fill="currentColor" />
-                    ))}
-                  </div>
-
-                  <p className="mt-5 text-white/75 text-lg leading-relaxed">
-                    “{item.text}”
-                  </p>
-
-                  <div className="mt-8 pt-6 border-t border-white/10">
-                    <p className="text-white font-bold">{item.name}</p>
-                    <p className="text-white/50 text-sm">Cliente Sinergia</p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* controles */}
-              <div className="mt-8 flex items-center justify-between gap-4">
-                <div className="flex gap-2">
-                  <button
-                    onClick={prev}
-                    className="h-11 w-11 rounded-2xl border border-white/10 bg-black/30 hover:bg-white/5 transition flex items-center justify-center text-white"
-                    aria-label="Anterior"
-                  >
-                    <ChevronLeft size={18} />
-                  </button>
-                  <button
-                    onClick={next}
-                    className="h-11 w-11 rounded-2xl border border-white/10 bg-black/30 hover:bg-white/5 transition flex items-center justify-center text-white"
-                    aria-label="Siguiente"
-                  >
-                    <ChevronRight size={18} />
-                  </button>
-                </div>
-
-                {/* dots */}
-                <div className="flex items-center gap-2">
-                  {items.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setIndex(i)}
-                      className={[
-                        "h-2.5 rounded-full transition",
-                        i === index ? "w-8 bg-emerald-300" : "w-2.5 bg-white/20 hover:bg-white/35",
-                      ].join(" ")}
-                      aria-label={`Testimonio ${i + 1}`}
+                {/* Top: rating */}
+                <div className="relative z-10 flex items-center gap-1">
+                  {Array.from({ length: t.rating }).map((_, idx) => (
+                    <Star
+                      key={idx}
+                      className="h-4 w-4 text-emerald-500 fill-emerald-500"
                     />
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Mini lista (preview) */}
-          <div className="space-y-4">
-            {items.map((t, i) => (
-              <button
-                key={t.name}
-                onClick={() => setIndex(i)}
-                className={[
-                  "w-full text-left rounded-2xl border transition p-5",
-                  i === index
-                    ? "border-emerald-300/40 bg-emerald-400/10"
-                    : "border-white/10 bg-white/5 hover:bg-white/7",
-                ].join(" ")}
-              >
-                <p className="text-white font-bold line-clamp-1">{t.name}</p>
-                <p className="text-white/60 text-sm mt-1 line-clamp-2">
-                  {t.text}
+                {/* Quote */}
+                <p className="relative z-10 mt-5 text-slate-700 leading-relaxed">
+                  “{t.text}”
                 </p>
-              </button>
-            ))}
-          </div>
+
+                {/* Divider */}
+                <div className="relative z-10 mt-6 h-px w-full bg-slate-200/70" />
+
+                {/* Footer: person */}
+                <div className="relative z-10 mt-6 flex items-center gap-4">
+                  <div className="h-11 w-11 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-800">
+                    {t.name.split(" ")[0][0]}
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="text-slate-900 font-semibold truncate">
+                      {t.name}
+                    </p>
+                    <p className="text-slate-500 text-sm truncate">{t.role}</p>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
+
+        {/* Bottom note / CTA */}
+        <Reveal delay={0.12}>
+          <div className="mt-12 flex items-center justify-between flex-col md:flex-row gap-4 rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl p-6 shadow-sm">
+            <div>
+              <p className="text-slate-900 font-semibold">
+                ¿Quieres resultados así en tu empresa?
+              </p>
+              <p className="text-slate-600 text-sm">
+                Te guiamos con una ruta clara y evidencias listas para auditoría.
+              </p>
+            </div>
+
+            <a
+              href="#contacto"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl
+                         bg-emerald-500 hover:bg-emerald-600 text-white font-semibold
+                         shadow-md hover:shadow-lg transition hover:scale-[1.02]"
+            >
+              Cotizar ahora
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
