@@ -15,6 +15,7 @@ import Results from "./components/Results";
 import FieldSlider from "./components/FieldSlider";
 import Clients from "./components/Clients";
 import Plans from "./components/Plans";
+import PortfolioDownload from "./components/PortfolioDownload";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import About from "./components/About";
@@ -47,6 +48,7 @@ export default function App() {
 
         <Clients />
         <Plans />
+        <PortfolioDownload />
 
         <Testimonials />
         <FAQ />

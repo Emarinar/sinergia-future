@@ -153,7 +153,7 @@ export default function MapReviews() {
             </div>
 
             <p className="mt-auto pt-6 text-xs text-slate-500">
-              * Cuando tengas el link real de Google Business, reemplazamos <b>REVIEWS_URL</b> por “Escribir reseña”.
+              {/* * Cuando tengas el link real de Google Business, reemplazamos <b>REVIEWS_URL</b> por “Escribir reseña”. */}
             </p>
           </div>
         </div>

@@ -96,7 +96,7 @@ export default function Social() {
             </div>
 
             <div className="text-sm text-slate-500">
-              * Próximo paso PRO: automatizar “últimos posts” desde IG (requiere token/API o servicio intermedio).
+              {/* * Próximo paso PRO: automatizar “últimos posts” desde IG (requiere token/API o servicio intermedio). */}
             </div>
           </div>
 
@@ -133,8 +133,8 @@ export default function Social() {
             </div>
 
             <p className="mt-4 text-sm text-slate-600">
-              Estas imágenes salen de <code className="px-1 py-0.5 rounded bg-slate-100">/public/field</code>.
-              Luego podemos crear un álbum por cliente, sector o servicio.
+              {/* Estas imágenes salen de <code className="px-1 py-0.5 rounded bg-slate-100">/public/field</code>.
+              Luego podemos crear un álbum por cliente, sector o servicio. */}
             </p>
           </div>
         </div>

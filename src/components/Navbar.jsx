@@ -62,6 +62,9 @@ export default function Navbar() {
             <a href="#nosotros" className="hover:text-slate-900 transition">
               Nosotros
             </a>
+            <a href="#portafolio" className="hover:text-slate-900 transition">
+              Portafolio
+            </a>
             <a href="#contacto" className="hover:text-slate-900 transition">
               Contacto
             </a>
@@ -130,6 +133,7 @@ export default function Navbar() {
             <Item href="#inicio" onClick={() => setOpen(false)}>Inicio</Item>
             <Item href="#servicios" onClick={() => setOpen(false)}>Servicios</Item>
             <Item href="#nosotros" onClick={() => setOpen(false)}>Nosotros</Item>
+            <Item href="#portafolio" onClick={() => setOpen(false)}>Portafolio</Item>
             <Item href="#contacto" onClick={() => setOpen(false)}>Contacto</Item>
           </nav>
 
